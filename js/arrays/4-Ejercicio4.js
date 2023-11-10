@@ -38,8 +38,16 @@ const asignarResponsableAlProyecto = (nombreProyecto, responsable) => {
     const proyecto = proyectos.find(proyecto => proyecto.includes(nombreProyecto));
 
     if(indexProyecto !== -1){
-        responsables[indexProyecto] = responsable;
-        return alert(`Al proyecto ${proyecto} se le asigno el responsable ${responsable}`);
+        if(responsables[indexProyecto] === 'Sin Asignar'){
+            responsables[indexProyecto] = responsable;
+            return alert(`Al proyecto ${proyecto} se le asigno el responsable ${responsable}`);
+        }else{
+            if(confirm(`El proyecto ${proyecto} ya tiene un responsable, desea cambiarselo?`)){
+                responsables[indexProyecto] = responsable;
+                return alert(`Al proyecto ${proyecto} se le asigno el responsable ${responsable}`);
+            }
+            return alert(`El proyecto ${proyecto} tiene como responsable a ${responsables[indexProyecto]}`);
+        }
     }else{
         return alert(`No se puedo encontrar el proyecto ingresado`);
     }
@@ -47,14 +55,14 @@ const asignarResponsableAlProyecto = (nombreProyecto, responsable) => {
 
 const resumenProyectosEnCurso = () =>{
     const proyectosEnCurso = proyectos.filter((proyecto, index) => proyectoEnCurso(estadosProyecto[index]));
-    console.log(proyectosEnCurso);
+    mostrarArrays(proyectosEnCurso, 'Proyectos en curso');
 }
 
-// const nombreProyecto = prompt('Ingrese el proyecto al que desea cambiar el estado');
+const nombreProyecto = prompt('Ingrese el proyecto al que desea cambiar el estado');
 // const estadoNuevo = prompt('Ingrese el nuevo estado del proyecto');
+const responsable = prompt('Ingrese el nombre del responsable que asignara al proyecto');
+
 // agregarProyecto(nombreProyecto);
-console.log(proyectos);
-console.log(estadosProyecto);
 // cambiarEstadoDeProyecto(nombreProyecto, estadoNuevo);
-// console.log(estadosProyecto);
+asignarResponsableAlProyecto(nombreProyecto, responsable);
 resumenProyectosEnCurso()
