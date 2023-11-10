@@ -4,7 +4,7 @@ class Rectangulo{
         this.ancho = ancho;
     }
 
-    mostrarPropiedades(){
+    get mostrarPropiedades(){
         document.write(`<h2>Alto: ${this.alto}</h2>`);
         document.write(`<h2>Ancho: ${this.ancho}</h2>`);
     }
@@ -21,14 +21,14 @@ class Rectangulo{
         return (2*this.alto) + (2*this.ancho);
     }
 
-    get area(){
+    get calcularArea(){
         return this.alto*this.ancho;
     }
 }
 
 const rect = new Rectangulo(10, 5);
-rect.mostrarPropiedades();
-// const perimetro = rect.calcularPerimetro();
-const area = rect.area();
-// console.log(perimetro);
+rect.mostrarPropiedades;
+const perimetro = rect.calcularPerimetro;
+const area = rect.calcularArea;
+console.log(perimetro);
 console.log(area);
