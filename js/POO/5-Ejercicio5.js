@@ -160,7 +160,5 @@ persona.mostrarDatos();
 persona.mostrarGeneracion();
 persona.esMayorDeEdad();
 const nuevoDni = persona.generarDni();
-console.log(nuevoDni);
-console.log(persona.dni)
 persona.dni = nuevoDni;
 document.write(`<h2>Nuevo DNI: ${persona.dni}</h2>`);
