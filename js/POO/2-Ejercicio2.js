@@ -2,13 +2,21 @@ const cuentaBancaria = {
     saldo: 0,
     titular: 'Agustin Maza',
     depositar: function (deposito){
-        this.saldo += deposito;
+        if(!isNaN(deposito) && deposito > 0){
+            this.saldo += deposito;
+        }else{
+            alert('Por favor ingrese un valor valido de deposito');
+        } 
     },
     retirar: function (retiro){
-        if(this.saldo >= retiro){
-            this.saldo -= retiro;
-        } else{
-            alert(`Saldo insuficiente, su saldo actual es: ${this.saldo}`);
+        if(!isNaN(retiro) && retiro > 0){
+            if(this.saldo >= retiro){
+                this.saldo -= retiro;
+            } else{
+                alert(`Saldo insuficiente, su saldo actual es: $ ${this.saldo}`);
+            }
+        }else{
+            alert('Por favor ingrese un valor valido de retiro');
         }
     },
     informar: function(){
