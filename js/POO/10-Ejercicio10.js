@@ -25,7 +25,8 @@ class Aeropuerto{
     buscarAvion(nombre){
         const avionBuscado = this.#listaAviones.find(avion => avion.nombre === nombre);
         if(avionBuscado !== undefined){
-            document.write(`<h2>Nombre: ${avionBuscado.nombre}, Capacidad: ${avionBuscado.capacidad}, Destino: ${avionBuscado.destino}, Lista De Pasajeros: ${avionBuscado.listarPasajeros()}</h2>`);
+            document.write(`<h2>Nombre del Avión: ${avionBuscado.nombre}, Capacidad: ${avionBuscado.capacidad} personas, Destino: ${avionBuscado.destino}</h2>`);
+            avionBuscado.listarPasajeros();
         }else{
             document.write(`<h2>No se encontro ningún avión con nombre ${nombre}</h2>`);
         }
@@ -52,6 +53,26 @@ class Avion{
         this.#nombre = nom;
     }
 
+    get capacidad(){
+        return this.#capacidad
+    }
+
+    set capacidad(capacity){
+        if(!isNaN(capacity) && capacity > 0){
+            this.#capacidad = nom;
+        }else{
+            alert('Ingrese un número válido para la capacidad');
+        }
+    }
+
+    get destino(){
+        return this.#destino;
+    }
+
+    set destino(dest){
+        this.#nombre = dest;
+    }
+
     abordar(pasajero){
         if(!this.lugarDisponible()){
             this.#listaDePasajeros.push(pasajero);
@@ -65,7 +86,10 @@ class Avion{
     }
 
     listarPasajeros(){
-        this.#listaDePasajeros.map(pasajero => document.write(`<p>${pasajero}</p>`));
+        document.write('<h2>Listado de Pasajeros</h2>');
+        document.write('<ul>');
+        this.#listaDePasajeros.map(pasajero => document.write(`<li>${pasajero}</li>`));
+        document.write('</ul>');
     }
 }
 
@@ -74,14 +98,13 @@ const avion1 = new Avion('Fly Bondi', 50, 'Hawai');
 avion1.abordar('Juan');
 avion1.abordar('Pedro');
 const avion2 = new Avion('Wiiiii', 70, 'Londres');
-avion2.abordar('Juan');
-avion2.abordar('Pedro');
+avion2.abordar('Pepito');
+avion2.abordar('Jose');
 const avion3 = new Avion('Hercules', 150, 'Ushuaia');
-avion3.abordar('Juan');
-avion3.abordar('Pedro');
+avion3.abordar('Diana');
+avion3.abordar('Agustin');
 
 aeropuerto.agregarAviones(avion1);
 aeropuerto.agregarAviones(avion2);
 aeropuerto.agregarAviones(avion3);
-console.log(aeropuerto);
-aeropuerto.buscarAvion('Wiiiii');
+aeropuerto.buscarAvion('Hercules');
